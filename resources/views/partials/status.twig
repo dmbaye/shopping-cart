@@ -1,0 +1,17 @@
+{% if product.inStock() %}
+    <div class="badge badge-pill badge-success">
+        <strong>In Stock</strong>
+    </div>
+{% endif %}
+
+{% if product.hasLowStock() %}
+    <div class="badge badge-pill badge-warning">
+        <strong>Low Stock</strong>
+    </div>
+{% endif %}
+
+{% if product.outOfStock() %}
+    <div class="badge badge-pill badge-danger">
+        <strong>Out of Stock</strong>
+    </div>
+{% endif %}

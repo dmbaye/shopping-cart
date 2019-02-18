@@ -1,0 +1,133 @@
+{% extends 'templates/app.twig' %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>Order Details</h1>
+
+    <form action="{{ path_for('orders.store') }}" method="post">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">Your Details</div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+
+                                    <input type="text" name="name" id="name" placeholder="Full Name" value="{{ old.name }}" class="form-control{{ errors.name ? ' is-invalid' : '' }}">
+
+                                    {% if errors.name %}
+                                        <span class="invalid-feedback">
+                                            <strong>{{ errors.name|first }}</strong>
+                                        </span>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+
+                                    <input type="email" name="email" id="email" placeholder="name@domain.com" value="{{ old.email }}" class="form-control{{ errors.email ? ' is-invalid' : '' }}">
+
+                                    {% if errors.email %}
+                                        <span class="invalid-feedback">
+                                            <strong>{{ errors.email|first }}</strong>
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">Shipping Address</div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="address1">Address 1</label>
+
+                                    <input type="text" name="address1" id="address1" placeholder="Address 1" class="form-control{{ errors.address1 ? ' is-invalid' : '' }}">
+
+                                    {% if errors.address1 %}
+                                        <span class="invalid-feedback">
+                                            <strong>{{ errors.address1|first }}</strong>
+                                        </span>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="address2">Address 2</label>
+
+                                    <input type="text" name="address2" id="address2" placeholder="Address 2" class="form-control{{ errors.address2 ? ' is-invalid' : '' }}">
+
+                                    {% if errors.address2 %}
+                                        <span class="invalid-feedback">
+                                            <strong>{{ errors.address2|first }}</strong>
+                                        </span>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="city">City</label>
+
+                                    <input type="text" name="city" id="city" placeholder="City" class="form-control{{ errors.city ? ' is-invalid' : '' }}">
+
+                                    {% if errors.city %}
+                                        <span class="invalid-feedback">
+                                            <strong>{{ errors.city|first }}</strong>
+                                        </span>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="postal_code">Postal Code</label>
+
+                                    <input type="text" name="postal_code" id="postal_code" placeholder="Postal Code" class="form-control{{ errors.postal_code ? ' is-invalid' : '' }}">
+
+                                    {% if errors.postal_code %}
+                                        <span class="invalid-feedback">
+                                            <strong>{{ errors.postal_code|first }}</strong>
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Payment Method</h4>
+                    <div id="payment"></div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">Cart Summary</div>
+                    <div class="card-body">
+                        {% include 'partials/cart-content.twig' %}
+                        {% include 'partials/cart-summary.twig' %}
+                        <hr>
+                        <button type="submit" class="btn btn-primary">
+                            Place Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
+<script>
+    fetch('{{ path_for('braintree.token') }}')
+        .then(response => response.json())
+        .then((data) => {
+            braintree.setup(data.token, "dropin", {
+                container: "payment"
+            });
+        });
+</script>
+{% endblock %}

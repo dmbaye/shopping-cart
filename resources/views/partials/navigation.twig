@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-success sticky-top">
+    <div class="container-fluid">
+        <a href="{{ path_for('home') }}" class="navbar-brand">
+            Smart Buy
+        </a>
+
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Categories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a href="#" class="dropdown-item">Electronics</a>
+                      <a href="#" class="dropdown-item">Furnitures</a>
+                      <a href="#" class="dropdown-item">Appliances</a>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="{{ path_for('cart.index') }}" class="nav-link">
+                        <i class="fa fa-shopping-cart"></i>
+                        {% if basket.itemCount() %}
+                            <span class="badge badge-pill badge-danger">
+                                {{ basket.itemCount() }}
+                            </span>
+                        {% endif %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        Login
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

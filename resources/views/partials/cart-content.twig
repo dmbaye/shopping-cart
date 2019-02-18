@@ -1,0 +1,18 @@
+<table class="table mb-4">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    {% for item in basket.all() %}
+        <tr>
+            <td>
+                <a href="{{ path_for('products.show', {slug: item.slug}) }}">
+                {{ item.title }}
+                </a>
+            </td>
+            <td>{{ item.quantity }}</td>
+        </tr>
+    {% endfor %}
+</table>
