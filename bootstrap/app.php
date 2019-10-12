@@ -1,6 +1,6 @@
 <?php
 
-ini_set('display_errors', E_ALL);
+ini_set('display_errors', 1);
 
 session_start();
 
@@ -10,11 +10,11 @@ $app = new App\App;
 
 $container = $app->getContainer();
 
-// try {
-//     $dotenv = new Dotenv\Dotenv(__DIR__ . '/../');
-//     $dotenv->load();
-// } catch (Exception $e) {
-// }
+try {
+    $dotenv = Dotenv\Dotenv::create(__DIR__.'/../');
+    $dotenv->load();
+} catch (Exception $e) {
+}
 
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/middlewares.php';
