@@ -12,6 +12,9 @@ $app->get('/orders/{hash}', ['App\Controllers\OrderController', 'show'])->setNam
 $app->post('/orders/store', ['App\Controllers\OrderController', 'store'])->setName('orders.store');
 
 $app->get('/register', ['App\Controllers\Auth\RegisterController', 'showRegister'])->setName('auth.register');
+$app->get('/login', ['App\Controllers\Auth\LoginController', 'showLogin'])->setName('auth.login');
+$app->get('/logout', ['App\Controllers\Auth\LoginController', 'logout'])->setName('auth.logout');
 $app->post('/register', ['App\Controllers\Auth\RegisterController', 'register'])->setName('auth.register');
+$app->post('/login', ['App\Controllers\Auth\LoginController', 'login'])->setName('auth.login');
 
 $app->get('/braintree/token', ['App\Controllers\BraintreeController', 'token'])->setName('braintree.token');
