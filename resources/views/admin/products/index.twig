@@ -1,0 +1,48 @@
+{% extends 'templates/admin.twig' %}
+
+{% block content %}
+<div class="container">
+    <h1>Products</h1>
+
+    <a href="/admin/products/create" class="btn btn-primary mb-3">
+        Add Product
+    </a>
+
+    {% if products.count() %}
+        <table class="table table-sm table-borderless">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th colspan="2">Description</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.title }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>${{ product.price|number_format(2) }}</td>
+                        <td>{{ product.stock }}</td>
+                        <td>
+                            <a href="#" class="btn">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            <a href="#" class="btn">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a href="#" class="btn">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No products</p>
+    {% endif %}
+</div>
+{% endblock %}

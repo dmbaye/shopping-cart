@@ -17,8 +17,12 @@ $app->get('/logout', ['App\Controllers\Auth\LoginController', 'logout'])->setNam
 $app->post('/register', ['App\Controllers\Auth\RegisterController', 'register'])->setName('auth.register');
 $app->post('/login', ['App\Controllers\Auth\LoginController', 'login'])->setName('auth.login');
 
-$app->group('', function () {
-    $this->get('/admin', ['App\Controllers\Admin\AdminController', 'index'])->setName('admin.index');
+$app->group('/admin', function () {
+    $this->get('', ['App\Controllers\Admin\AdminController', 'index'])->setName('admin.index');
+
+    $this->get('/products', ['App\Controllers\Admin\ProductsController', 'index'])->setName('products.index');
+    $this->get('/products/create', ['App\Controllers\Admin\ProductsController', 'create'])->setName('products.create');
+    $this->post('/products/store', ['App\Controllers\Admin\ProductsController', 'store'])->setName('products.store');
 });
 
 $app->get('/braintree/token', ['App\Controllers\BraintreeController', 'token'])->setName('braintree.token');
