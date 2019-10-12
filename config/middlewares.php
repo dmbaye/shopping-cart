@@ -19,4 +19,8 @@ $middleware = [
         $container->get(Slim\Router::class),
         $container->get(Slim\Views\Twig::class)
     ),
+    'admin' => new App\Middlewares\AdminMiddleware(
+        $container->get(Slim\Router::class),
+        $container->get(Slim\Views\Twig::class)
+    ),
 ];
