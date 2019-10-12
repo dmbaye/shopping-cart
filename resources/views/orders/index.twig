@@ -46,7 +46,7 @@
                                 <div class="form-group">
                                     <label for="address1">Address 1</label>
 
-                                    <input type="text" name="address1" id="address1" placeholder="Address 1" class="form-control{{ errors.address1 ? ' is-invalid' : '' }}">
+                                    <input type="text" name="address1" id="address1" placeholder="Address 1" value="{{ old.address }}" class="form-control{{ errors.address1 ? ' is-invalid' : '' }}">
 
                                     {% if errors.address1 %}
                                         <span class="invalid-feedback">
@@ -58,7 +58,7 @@
                                 <div class="form-group">
                                     <label for="address2">Address 2</label>
 
-                                    <input type="text" name="address2" id="address2" placeholder="Address 2" class="form-control{{ errors.address2 ? ' is-invalid' : '' }}">
+                                    <input type="text" name="address2" id="address2" placeholder="Address 2" value="{{ old.address2 }}" class="form-control{{ errors.address2 ? ' is-invalid' : '' }}">
 
                                     {% if errors.address2 %}
                                         <span class="invalid-feedback">
@@ -70,7 +70,7 @@
                                 <div class="form-group">
                                     <label for="city">City</label>
 
-                                    <input type="text" name="city" id="city" placeholder="City" class="form-control{{ errors.city ? ' is-invalid' : '' }}">
+                                    <input type="text" name="city" id="city" placeholder="City" value="{{ old.city }}" class="form-control{{ errors.city ? ' is-invalid' : '' }}">
 
                                     {% if errors.city %}
                                         <span class="invalid-feedback">
@@ -82,7 +82,7 @@
                                 <div class="form-group">
                                     <label for="postal_code">Postal Code</label>
 
-                                    <input type="text" name="postal_code" id="postal_code" placeholder="Postal Code" class="form-control{{ errors.postal_code ? ' is-invalid' : '' }}">
+                                    <input type="text" name="postal_code" id="postal_code" placeholder="Postal Code" value="{{ old.postal_code }}" class="form-control{{ errors.postal_code ? ' is-invalid' : '' }}">
 
                                     {% if errors.postal_code %}
                                         <span class="invalid-feedback">

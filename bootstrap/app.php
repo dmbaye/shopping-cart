@@ -8,13 +8,11 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $app = new App\App;
 
-$container = $app->getContainer();
-
 try {
-    $dotenv = Dotenv\Dotenv::create(__DIR__.'/../');
-    $dotenv->load();
-} catch (Exception $e) {
-}
+    Dotenv\Dotenv::create(__DIR__.'/../')->load();
+} catch (Exception $e) {}
+
+$container = $app->getContainer();
 
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/middlewares.php';

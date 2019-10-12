@@ -11,9 +11,9 @@ class BraintreeController extends Controller
     {
         $gateway = new \Braintree_Gateway([
             'environment' => 'sandbox',
-            'merchantId' => 'tjqqhnjp9xjzzqjs',
-            'publicKey' => 'mdhttdmztzpbrpqm',
-            'privateKey' => '19db488a83b3ef94bb405018f67dd1e7',
+            'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+            'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+            'privateKey' => env('BRAINTREE_PRIVATE_KEY'),
         ]);
 
         return $response->withJson([
