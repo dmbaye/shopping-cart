@@ -11,6 +11,7 @@ use App\Support\Storage\SessionStorage;
 use App\Basket\Basket;
 use App\Validation\Contracts\ValidationInterface;
 use App\Validation\Validator;
+use App\Auth\Auth;
 
 return [
     Twig::class => function (ContainerInterface $c) {
@@ -23,6 +24,7 @@ return [
 
         $view->getEnvironment()->addGlobal('basket', $c->get(Basket::class));
         $view->getEnvironment()->addGlobal('flash', $c->get(Flash::class));
+        $view->getEnvironment()->addGlobal('auth', $c->get(Auth::class));
 
         return $view;
     },
@@ -43,5 +45,8 @@ return [
     },
     ValidationInterface::class => function (ContainerInterface $c) {
         return new Validator;
+    },
+    Auth::class => function (ContainerInterface $c) {
+        return new Auth;
     }
 ];

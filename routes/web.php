@@ -11,4 +11,7 @@ $app->get('/orders', ['App\Controllers\OrderController', 'index'])->setName('ord
 $app->get('/orders/{hash}', ['App\Controllers\OrderController', 'show'])->setName('orders.show');
 $app->post('/orders/store', ['App\Controllers\OrderController', 'store'])->setName('orders.store');
 
+$app->get('/register', ['App\Controllers\Auth\RegisterController', 'showRegister'])->setName('auth.register');
+$app->post('/register', ['App\Controllers\Auth\RegisterController', 'register'])->setName('auth.register');
+
 $app->get('/braintree/token', ['App\Controllers\BraintreeController', 'token'])->setName('braintree.token');
