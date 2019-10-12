@@ -17,4 +17,8 @@ $app->get('/logout', ['App\Controllers\Auth\LoginController', 'logout'])->setNam
 $app->post('/register', ['App\Controllers\Auth\RegisterController', 'register'])->setName('auth.register');
 $app->post('/login', ['App\Controllers\Auth\LoginController', 'login'])->setName('auth.login');
 
+$app->group('', function () {
+    $this->get('/admin', ['App\Controllers\Admin\AdminController', 'index'])->setName('admin.index');
+});
+
 $app->get('/braintree/token', ['App\Controllers\BraintreeController', 'token'])->setName('braintree.token');
