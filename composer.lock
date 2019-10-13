@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb4db26f5b6d05965730fa6466c1bd71",
+    "content-hash": "cab06f0df9ae04d7906cfa3f6dfb159a",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -297,6 +297,50 @@
                 "orm",
                 "sql"
             ],
+            "time": "2019-02-11T13:48:57+00:00"
+        },
+        {
+            "name": "illuminate/pagination",
+            "version": "v5.7.26",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/pagination.git",
+                "reference": "3955a9c41095da874d353a205f9079b7211f9238"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/pagination/zipball/3955a9c41095da874d353a205f9079b7211f9238",
+                "reference": "3955a9c41095da874d353a205f9079b7211f9238",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "5.7.*",
+                "illuminate/support": "5.7.*",
+                "php": "^7.1.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Pagination\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "The Illuminate Pagination package.",
+            "homepage": "https://laravel.com",
             "time": "2019-02-11T13:48:57+00:00"
         },
         {
