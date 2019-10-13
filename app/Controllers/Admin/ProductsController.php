@@ -63,14 +63,37 @@ class ProductsController extends Controller
         $product = Product::where('slug', $slug)->first();
 
         if (!$product) {
-            return $response->withRedirect($this->route->pathFor('home'));
+            return $response->withRedirect($this->route->pathFor('products.index'));
         }
 
         return $this->view->render($response, 'admin/products/edit.twig', compact('product'));
     }
 
     public function update(Request $request, Response $response, string $slug)
-    {}
+    {
+        $validation = $this->validator->validate($request, ProductForm::rules());
+
+        if ($validation->fails()) {
+            $this->flash->addMessage('error', 'Please enter valid data.');
+            return $response->withRedirect($this->router->pathFor('products.create'));
+        }
+
+        $product = Product::where('slug', $slug)->first();
+
+        $product->title = $request->getParam('name');
+        $product->slug = $request->getParam('slug');
+        $product->description = $request->getParam('description');
+        $product->price = $request->getParam('price');
+        $product->stock = $request->getParam('stock');
+
+        if (!$product->save()) {
+            $this->flash->addMessage('error', 'Please enter valid data.');
+            return $response->withRedirect($this->router->pathFor('products.create'));
+        }
+
+        $this->flash->addMessage('success', 'Your product was saved successfully.');
+        return $response->withRedirect($this->router->pathFor('products.index'));
+    }
 
     public function destroy(Request $request, Response $response, string $slug)
     {}

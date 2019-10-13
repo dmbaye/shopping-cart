@@ -6,16 +6,6 @@
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Categories
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a href="#" class="dropdown-item">Electronics</a>
-                      <a href="#" class="dropdown-item">Furnitures</a>
-                      <a href="#" class="dropdown-item">Appliances</a>
-                    </div>
-                </li>
             </ul>
 
             <ul class="navbar-nav ml-auto">
@@ -35,6 +25,11 @@
                           {{ auth.user.getUserName() }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if auth.admin() %}
+                                <a href="/admin" class="dropdown-item">
+                                    Admin
+                                </a>
+                            {% endif %}
                             <a href="#" class="dropdown-item">
                                 Profile
                             </a>

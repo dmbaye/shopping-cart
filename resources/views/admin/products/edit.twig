@@ -2,6 +2,78 @@
 
 {% block content %}
 <div class="container">
-    <h1>Edit Product</h1>
+    <h1>Add Product</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <form action="{{ path_for('products.update', { slug: product.slug }) }}" method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+
+                    <input type="text" name="name" id="name" value="{{ product.title }}" class="form-control{{ errors.name ? ' is-invalid' : '' }}">
+
+                    {% if errors.name %}
+                        <span class="invalid-feedback">
+                            <strong>{{ errors.name|first }}</strong>
+                        </span>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="slug">Slug</label>
+
+                    <input type="text" name="slug" id="slug" value="{{ product.slug }}" class="form-control{{ errors.slug ? ' is-invalid' : '' }}">
+
+                    {% if errors.slug %}
+                        <span class="invalid-feedback">
+                            <strong>{{ errors.slug|first }}</strong>
+                        </span>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+
+                    <textarea name="description" id="description" cols="30" rows="10" class="form-control{{ errors.description ? ' is-invalid' : '' }}">{{ product.description }}</textarea>
+
+                    {% if errors.description %}
+                        <span class="invalid-feedback">
+                            <strong>{{ errors.description|first }}</strong>
+                        </span>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price</label>
+
+                    <input type="text" name="price" id="price" value="{{ product.price }}" class="form-control{{ errors.price ? ' is-invalid' : '' }}">
+
+                    {% if errors.price %}
+                        <span class="invalid-feedback">
+                            <strong>{{ errors.price|first }}</strong>
+                        </span>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="stock">Stock</label>
+
+                    <input type="text" name="stock" id="stock" value="{{ product.stock }}" class="form-control{{ errors.stock ? ' is-invalid' : '' }}">
+
+                    {% if errors.stock %}
+                        <span class="invalid-feedback">
+                            <strong>{{ errors.stock|first }}</strong>
+                        </span>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

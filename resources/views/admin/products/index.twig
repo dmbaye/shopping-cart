@@ -13,7 +13,6 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th colspan="2">Description</th>
                     <th>Price</th>
                     <th>Stock</th>
                     <th colspan="2">Actions</th>
@@ -23,14 +22,13 @@
                 {% for product in products %}
                     <tr>
                         <td>{{ product.title }}</td>
-                        <td>{{ product.description }}</td>
                         <td>${{ product.price|number_format(2) }}</td>
                         <td>{{ product.stock }}</td>
                         <td>
                             <a href="#" class="btn">
                                 <i class="fa fa-eye"></i>
                             </a>
-                            <a href="#" class="btn">
+                            <a href="{{ path_for('products.edit', {slug: product.slug }) }}" class="btn">
                                 <i class="fa fa-edit"></i>
                             </a>
                             <a href="#" class="btn">

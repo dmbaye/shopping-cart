@@ -46,8 +46,7 @@
                             <div class="card shadow">
                                 <img src="{{ product.image }}" alt="{{ product.title }} Image" class="card-image-top">
                                 <div class="card-body">
-                                    <h5>{{ product.title }}</h5>
-                                    <p>{{ product.description }}</p>
+                                    <h5 class="card-title">{{ product.title }}</h5>
                                     <a href="{{ path_for('products.show', {slug: product.slug}) }}" class="btn btn-primary">
                                         View Details
                                     </a>

@@ -17,12 +17,14 @@ $app->get('/logout', ['App\Controllers\Auth\LoginController', 'logout'])->setNam
 $app->post('/register', ['App\Controllers\Auth\RegisterController', 'register'])->setName('auth.register')->add($guest);
 $app->post('/login', ['App\Controllers\Auth\LoginController', 'login'])->setName('auth.login')->add($guest);
 
-$app->group('/admin', function () {
-    $this->get('', ['App\Controllers\Admin\AdminController', 'index'])->setName('admin.index');
+$app->group('/admin', function (App\App $app) {
+    $app->get('', ['App\Controllers\Admin\AdminController', 'index'])->setName('admin.index');
 
-    $this->get('/products', ['App\Controllers\Admin\ProductsController', 'index'])->setName('products.index');
-    $this->get('/products/create', ['App\Controllers\Admin\ProductsController', 'create'])->setName('products.create');
-    $this->post('/products/store', ['App\Controllers\Admin\ProductsController', 'store'])->setName('products.store');
+    $app->get('/products', ['App\Controllers\Admin\ProductsController', 'index'])->setName('products.index');
+    $app->get('/products/create', ['App\Controllers\Admin\ProductsController', 'create'])->setName('products.create');
+    $app->get('/products/{slug}/edit', ['App\Controllers\Admin\ProductsController', 'edit'])->setName('products.edit');
+    $app->post('/products/store', ['App\Controllers\Admin\ProductsController', 'store'])->setName('products.store');
+    $app->post('/products/{slug}/update', ['App\Controllers\Admin\ProductsController', 'update'])->setName('products.update');
 })->add($auth)->add($admin);
 
 $app->get('/braintree/token', ['App\Controllers\BraintreeController', 'token'])->setName('braintree.token');
