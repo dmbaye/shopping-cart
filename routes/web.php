@@ -9,13 +9,13 @@ $app->post('/cart/add/{slug}', ['App\Controllers\CartController', 'update'])->se
 
 $app->get('/orders', ['App\Controllers\OrderController', 'index'])->setName('orders.index');
 $app->get('/orders/{hash}', ['App\Controllers\OrderController', 'show'])->setName('orders.show');
-$app->post('/orders/store', ['App\Controllers\OrderController', 'store'])->setName('orders.store')->add($middleware['auth']);
+$app->post('/orders/store', ['App\Controllers\OrderController', 'store'])->setName('orders.store')->add($auth);
 
-$app->get('/register', ['App\Controllers\Auth\RegisterController', 'showRegister'])->setName('auth.register')->add($middleware['guest']);
-$app->get('/login', ['App\Controllers\Auth\LoginController', 'showLogin'])->setName('auth.login')->add($middleware['guest']);
-$app->get('/logout', ['App\Controllers\Auth\LoginController', 'logout'])->setName('auth.logout')->add($middleware['auth']);;
-$app->post('/register', ['App\Controllers\Auth\RegisterController', 'register'])->setName('auth.register')->add($middleware['guest']);
-$app->post('/login', ['App\Controllers\Auth\LoginController', 'login'])->setName('auth.login')->add($middleware['guest']);
+$app->get('/register', ['App\Controllers\Auth\RegisterController', 'showRegister'])->setName('auth.register')->add($guest);
+$app->get('/login', ['App\Controllers\Auth\LoginController', 'showLogin'])->setName('auth.login')->add($guest);
+$app->get('/logout', ['App\Controllers\Auth\LoginController', 'logout'])->setName('auth.logout')->add($auth);;
+$app->post('/register', ['App\Controllers\Auth\RegisterController', 'register'])->setName('auth.register')->add($guest);
+$app->post('/login', ['App\Controllers\Auth\LoginController', 'login'])->setName('auth.login')->add($guest);
 
 $app->group('/admin', function () {
     $this->get('', ['App\Controllers\Admin\AdminController', 'index'])->setName('admin.index');
@@ -23,6 +23,6 @@ $app->group('/admin', function () {
     $this->get('/products', ['App\Controllers\Admin\ProductsController', 'index'])->setName('products.index');
     $this->get('/products/create', ['App\Controllers\Admin\ProductsController', 'create'])->setName('products.create');
     $this->post('/products/store', ['App\Controllers\Admin\ProductsController', 'store'])->setName('products.store');
-});
+})->add($auth)->add($admin);
 
 $app->get('/braintree/token', ['App\Controllers\BraintreeController', 'token'])->setName('braintree.token');

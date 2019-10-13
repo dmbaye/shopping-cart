@@ -10,6 +10,10 @@ class User extends Model
         'name', 'email', 'password',
     ];
 
+    protected $hidden = [
+        'password',
+    ];
+
     public function orders()
     {
         return $this->hasMany('App\Models\Order');

@@ -10,17 +10,18 @@ $app->add(new App\Middlewares\OldInputMiddleware(
     $container->get(Slim\Views\Twig::class)
 ));
 
-$middleware = [
-    'auth' => new App\Middlewares\AuthMiddleware(
-        $container->get(Slim\Router::class),
-        $container->get(Slim\Views\Twig::class)
-    ),
-    'guest' => new App\Middlewares\GuestMiddleware(
-        $container->get(Slim\Router::class),
-        $container->get(Slim\Views\Twig::class)
-    ),
-    'admin' => new App\Middlewares\AdminMiddleware(
-        $container->get(Slim\Router::class),
-        $container->get(Slim\Views\Twig::class)
-    ),
-];
+$auth = new App\Middlewares\AuthMiddleware(
+    $container->get(Slim\Router::class),
+    $container->get(Slim\Views\Twig::class)
+);
+
+$guest = new App\Middlewares\GuestMiddleware(
+    $container->get(Slim\Router::class),
+    $container->get(Slim\Views\Twig::class)
+);
+
+$admin = new App\Middlewares\AdminMiddleware(
+    $container->get(Slim\Router::class),
+    $container->get(Slim\Views\Twig::class)
+);
+

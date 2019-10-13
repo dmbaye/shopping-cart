@@ -10,7 +10,7 @@ class AdminMiddleware extends Middleware
 {
     public function __invoke(Request $request, Response $response, Callable $next)
     {
-        if (!Auth::user().is_admin === 1) {
+        if (Auth::check() && !Auth::admin()) {
             return $response->withRedirect($this->router->pathFor('home'));
         }
 

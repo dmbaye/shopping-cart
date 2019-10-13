@@ -25,12 +25,14 @@ class Auth
         return isset($_SESSION['user']);
     }
 
-    public function admin(): bool
+    public static function admin(): bool
     {
-        return (bool) $_SESSION['user']['is_admin'] === 1;
+        $user = User::findOrFail($_SESSION['user']);
+
+        return $user->is_admin === 1;
     }
 
-    public function user()
+    public function user(): User
     {
         return User::findOrFail($_SESSION['user']);
     }

@@ -12,7 +12,7 @@ class ProductsController extends Controller
 {
     public function index(Request $request, Response $response)
     {
-        $products = Product::latest()->get(15);
+        $products = Product::latest()->get();
 
         return $this->view->render($response, 'admin/products/index.twig', compact('products'));
     }
