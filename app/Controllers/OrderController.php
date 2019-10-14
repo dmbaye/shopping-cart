@@ -6,12 +6,20 @@ use App\Models\Product;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Address;
+use App\Auth\Auth;
 use App\Validation\Forms\OrderForm;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
 class OrderController extends Controller
 {
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return void
+     */
     public function index(Request $request, Response $response)
     {
         $this->basket->refresh();
@@ -24,6 +32,13 @@ class OrderController extends Controller
         return $this->view->render($response, 'orders/index.twig');
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return void
+     */
     public function store(Request $request, Response $response)
     {
         $gateway = new \Braintree_Gateway([
@@ -55,10 +70,10 @@ class OrderController extends Controller
 
         $hash = bin2hex(random_bytes(32));
 
-        $customer = Customer::firstOrCreate([
-            'name' => $request->getParam('name'),
-            'email' => $request->getParam('email'),
-        ]);
+        // $customer = Customer::firstOrCreate([
+        //     'name' => $request->getParam('name'),
+        //     'email' => $request->getParam('email'),
+        // ]);
 
         $address = Address::firstOrCreate([
             'address1' => $request->getParam('address1'),
@@ -67,7 +82,9 @@ class OrderController extends Controller
             'postal_code' => $request->getParam('postal_code'),
         ]);
 
-        $order = $customer->orders()->create([
+        $user = Auth::user();
+
+        $order = $user->orders()->create([
             'hash' => $hash,
             'paid' => false,
             'address_id' => $address->id,
@@ -114,6 +131,14 @@ class OrderController extends Controller
         return $response->withRedirect($this->router->pathFor('orders.show', ['hash' => $order->hash]));
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param string $hash
+     * @return void
+     */
     public function show(Request $request, Response $response, string $hash)
     {
         $order = Order::with('address', 'products')
@@ -127,6 +152,12 @@ class OrderController extends Controller
         return $this->view->render($response, 'orders/show.twig', compact('order'));
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param array $items
+     * @return void
+     */
     private function getQuantities(array $items)
     {
         $quantities = [];

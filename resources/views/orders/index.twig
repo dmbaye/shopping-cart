@@ -15,7 +15,7 @@
                                 <div class="form-group">
                                     <label for="name">Name</label>
 
-                                    <input type="text" name="name" id="name" placeholder="Full Name" value="{{ old.name }}" class="form-control{{ errors.name ? ' is-invalid' : '' }}">
+                                    <input type="text" name="name" id="name" placeholder="Full Name" value="{{ auth.user.name }}" class="form-control{{ errors.name ? ' is-invalid' : '' }}">
 
                                     {% if errors.name %}
                                         <span class="invalid-feedback">
@@ -27,7 +27,7 @@
                                 <div class="form-group">
                                     <label for="email">Email</label>
 
-                                    <input type="email" name="email" id="email" placeholder="name@domain.com" value="{{ old.email }}" class="form-control{{ errors.email ? ' is-invalid' : '' }}">
+                                    <input type="email" name="email" id="email" placeholder="name@domain.com" value="{{ auth.user.email }}" class="form-control{{ errors.email ? ' is-invalid' : '' }}">
 
                                     {% if errors.email %}
                                         <span class="invalid-feedback">

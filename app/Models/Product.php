@@ -7,12 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
-        'title', 'slug', 'description', 'image', 'price', 'stock',
+        'title',
+        'slug',
+        'description',
+        'image',
+        'price',
+        'stock',
     ];
 
     public $quantity = null;
 
-    public function hasLowStock()
+    /**
+     * Undocumented function
+     *
+     * @return boolean
+     */
+    public function hasLowStock(): bool
     {
         if ($this->outOfStock()) {
             return false;
@@ -21,17 +31,33 @@ class Product extends Model
         return (bool) ($this->stock <= 5);
     }
 
-    public function outOfStock()
+    /**
+     * Undocumented function
+     *
+     * @return boolean
+     */
+    public function outOfStock(): bool
     {
         return $this->stock === 0;
     }
 
-    public function inStock()
+    /**
+     * Undocumented function
+     *
+     * @return boolean
+     */
+    public function inStock(): bool
     {
         return $this->stock >= 1;
     }
 
-    public function hasStock(int $quantity)
+    /**
+     * Undocumented function
+     *
+     * @param integer $quantity
+     * @return boolean
+     */
+    public function hasStock(int $quantity): bool
     {
         return $this->stock >= $quantity;
     }

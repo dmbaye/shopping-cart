@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        'hash', 'total', 'paid', 'address_id', 'customer_id',
+        'hash',
+        'total',
+        'paid',
+        'address_id',
+        'customer_id',
     ];
 
     public function address()
@@ -23,7 +27,7 @@ class Order extends Model
 
     public function customer()
     {
-        return $this->belongsTo('App\Models\User', 'user_id');
+        return $this->belongsTo('App\Models\User', 'customer_id');
     }
 
     public function payment()
