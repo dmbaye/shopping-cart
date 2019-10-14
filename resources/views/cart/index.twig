@@ -21,13 +21,13 @@
                                     <tr>
                                         <td>
                                             <a href="{{ path_for('products.show', {slug: product.slug}) }}">
-                                                {{ product.title }}
+                                                {{ product.name }}
                                             </a>
                                         </td>
                                         <td>${{ product.price|number_format(2) }}</td>
                                         <td>
                                             <form action="{{ path_for('cart.update', {slug: product.slug}) }}" method="post" class="form-inline">
-                                                <select name="quantity" id="quantity" class="form-control input-sm">
+                                                <select name="quantity" id="quantity js-quantity" class="form-control form-control-sm mr-2">
                                                     <option value="0">None</option>
                                                     {% for num in 1..product.stock %}
                                                         <option value="{{ num }}" {{ num == product.quantity ? 'selected' : '' }}>
@@ -67,4 +67,14 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const quantityDropdown = document.getElementById('js-quantity);
+
+    quantityDropdown.addEventListener('change', () => {
+        alert('Updated');
+    });
+</script>
 {% endblock %}

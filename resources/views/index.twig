@@ -4,38 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2">
-            <div class="card">
-                <div class="card-body">
-                    <h5>Categories</h5>
-                    <ul>
-                        <li>
-                            Electronics
-                            <ul>
-                                <li>Phones</li>
-                                <li>Tables</li>
-                                <li>PCs</li>
-                            </ul>
-                        </li>
-                        <li>
-                            Furnitures
-                            <ul>
-                                <li>Shelves</li>
-                                <li>Chairs</li>
-                                <li>Tables</li>
-                            </ul>
-                        </li>
-                        <li>
-                            Appliances
-                            <ul>
-                                <li>TVs</li>
-                                <li>Blue Ray</li>
-                                <li>DVD</li>
-                                <li>Dish Washers</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
         </div>
 
         <div class="col-md-10">
@@ -43,10 +12,10 @@
                 <div class="row mb-3">
                     {% for index, product in products %}
                         <div class="col-md-3">
-                            <div class="card shadow">
+                            <div class="card shadow-sm mt-2">
                                 <img src="{{ product.image }}" alt="{{ product.title }} Image" class="card-image-top">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ product.title }}</h5>
+                                    <h5 class="card-title">{{ product.name }}</h5>
                                     <a href="{{ path_for('products.show', {slug: product.slug}) }}" class="btn btn-primary">
                                         View Details
                                     </a>
@@ -55,7 +24,7 @@
                         </div>
                         {% if (index + 1) % 4 == 0 %}
                             </div>
-                            <div class="row mb-3">
+                            <div class="row">
                         {% endif %}
                     {% endfor %}
                 </div>

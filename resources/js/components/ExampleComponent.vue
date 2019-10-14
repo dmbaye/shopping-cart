@@ -1,13 +1,23 @@
 <template>
     <div class="container">
-        <h1>Example Component</h1>
+        <h1>{{ title }}</h1>
+
+        <ul>
+            <li v-for="product in products">{{ product.name }}</li>
+        </ul>
     </div>
 </template>
 
 <script>
     export default {
+        data() {
+            return {
+                products: [],
+                title: 'Products',
+            };
+        },
+
         mounted() {
-            console.log('Component mounted.');
         }
     }
 </script>

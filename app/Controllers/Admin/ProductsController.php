@@ -32,7 +32,7 @@ class ProductsController extends Controller
         }
 
         $product = new Product();
-        $product->title = $request->getParam('name');
+        $product->name = $request->getParam('name');
         $product->slug = $request->getParam('slug');
         $product->description = $request->getParam('description');
         $product->price = $request->getParam('price');
@@ -80,7 +80,7 @@ class ProductsController extends Controller
 
         $product = Product::where('slug', $slug)->first();
 
-        $product->title = $request->getParam('name');
+        $product->name = $request->getParam('name');
         $product->slug = $request->getParam('slug');
         $product->description = $request->getParam('description');
         $product->price = $request->getParam('price');

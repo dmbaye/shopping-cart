@@ -1866,10 +1866,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
+  data: function data() {
+    return {
+      products: [],
+      title: 'Products'
+    };
+  },
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -36765,18 +36773,19 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("h1", [_vm._v(_vm._s(_vm.title))]),
+    _vm._v(" "),
+    _c(
+      "ul",
+      _vm._l(_vm.products, function(product) {
+        return _c("li", [_vm._v(_vm._s(product.name))])
+      }),
+      0
+    )
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("h1", [_vm._v("Example Component")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

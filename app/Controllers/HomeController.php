@@ -20,6 +20,12 @@ class HomeController extends Controller
     {
         $products = Product::all();
 
+        if ($request->getHeader('HTTP_CONTENT_TYPE')) {
+            return $response->withJson([
+                'products' => $products,
+            ], 200);
+        }
+
         return $this->view->render($response, 'index.twig', compact('products'));
     }
 
