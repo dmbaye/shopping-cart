@@ -1,0 +1,73 @@
+{% extends 'templates/admin.twig' %}
+
+{% block content %}
+<div class="container">
+    <h1>Order #{{ order.id }}</h1>
+
+    <div class="row">
+        <div class="col-md-12">
+            <ul style="list-style: none; margin: 0; padding: 0;">
+                <li style="display: inline-block; text-transform: uppercase;" class="mr-2">
+                    <small>
+                        Order Number: <br>
+                        <strong>{{ order.id }}</strong>
+                    </small>
+                </li>
+                <li style="display: inline-block; text-transform: uppercase; border-left: 2px dotted #bbb;" class="mr-2 ml-2">
+                    <small>
+                        Date: <br>
+                        <strong>{{ order.created_at|date('F d, Y') }}</strong>
+                    </small>
+                </li>
+                <li style="display: inline-block; text-transform: uppercase; border-left: 2px dotted #bbb;" class="mr-2 ml-2">
+                    <small>
+                        Total: <br>
+                        <strong>${{ order.total|number_format(2) }}</strong>
+                    </small>
+                </li>
+                <li style="display: inline-block; text-transform: uppercase; border-left: 2px dotted #bbb;" class="ml-2">
+                    <small>
+                        Payment Method: <br>
+                        <strong>Cash On Delivery</strong>
+                    </small>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Order Summary</div>
+                <div class="card-body">
+                    <table class="table table-sm table-borderless">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in order.products %}
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            {{ product.name }}
+                                        </a>
+                                        x
+                                        {{ product.pivot.quantity }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td>Total</td>
+                                <td>{{ order.total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

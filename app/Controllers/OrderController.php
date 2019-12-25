@@ -29,7 +29,7 @@ class OrderController extends Controller
             return $response->withRedirect($this->router->pathFor('cart.index'));
         }
 
-        return $this->view->render($response, 'orders/index.twig');
+        return $this->view->render($response, 'orders/index.html.twig');
     }
 
     /**
@@ -42,10 +42,10 @@ class OrderController extends Controller
     public function store(Request $request, Response $response)
     {
         $gateway = new \Braintree_Gateway([
-            'environment' => 'sandbox',
-            'merchantId' => 'tjqqhnjp9xjzzqjs',
-            'publicKey' => 'mdhttdmztzpbrpqm',
-            'privateKey' => '19db488a83b3ef94bb405018f67dd1e7',
+            'environment' => env('BRAINTREE_ENVIRONMENT'),
+            'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+            'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+            'privateKey' => env('BRAINTREE_PRIVATE_KEY'),
         ]);
 
         $this->basket->refresh();
@@ -69,11 +69,6 @@ class OrderController extends Controller
         }
 
         $hash = bin2hex(random_bytes(32));
-
-        // $customer = Customer::firstOrCreate([
-        //     'name' => $request->getParam('name'),
-        //     'email' => $request->getParam('email'),
-        // ]);
 
         $address = Address::firstOrCreate([
             'address1' => $request->getParam('address1'),
@@ -149,7 +144,7 @@ class OrderController extends Controller
             return $response->withRedirect($this->router->pathFor('home'));
         }
 
-        return $this->view->render($response, 'orders/show.twig', compact('order'));
+        return $this->view->render($response, 'orders/show.html.twig', compact('order'));
     }
 
     /**

@@ -1,0 +1,39 @@
+{% extends 'templates/admin.twig' %}
+
+{% block content %}
+<div class="container">
+    <h1>Orders</h1>
+
+    {% if orders.count() %}
+        <div class="table-responsive">
+            <table class="table table-sm table-borderless">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Order ID</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.created_at|date('Y-m-d h:m:s A') }}</td>
+                            <td>
+                                <a href="{{ path_for('admin.orders.show', {id: order.id}) }}" class="btn btn-sm">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a href="#" class="btn btn-sm">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>No orders</p>
+    {% endif %}
+</div>
+{% endblock %}

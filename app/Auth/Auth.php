@@ -25,7 +25,7 @@ class Auth
         return isset($_SESSION['user']);
     }
 
-    public static function admin(): bool
+    public static function admin()
     {
         $user = User::findOrFail($_SESSION['user']);
 

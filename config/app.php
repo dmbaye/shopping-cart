@@ -1,5 +1,11 @@
 <?php
 
+/*
+|------------------------------------------------------------------------------
+| Application config
+|------------------------------------------------------------------------------
+*/
+
 use Psr\Container\ContainerInterface;
 use function DI\get;
 use Slim\Views\Twig;
@@ -48,5 +54,5 @@ return [
     },
     Auth::class => function (ContainerInterface $c) {
         return new Auth;
-    }
+    },
 ];

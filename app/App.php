@@ -13,6 +13,6 @@ class App extends DIBridge
             'settings.displayErrorDetails' => true,
         ]);
 
-        $builder->addDefinitions(__DIR__ . '/../config/container.php');
+        $builder->addDefinitions(__DIR__ . '/../config/app.php');
     }
 }

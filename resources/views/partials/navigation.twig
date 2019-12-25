@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-success sticky-top">
     <div class="container-fluid">
         <a href="{{ path_for('home') }}" class="navbar-brand">
-            Market
+            Suguba
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -32,13 +32,14 @@
                                 <a href="/admin" class="dropdown-item">
                                     Admin
                                 </a>
-                            {% endif %}
-                            <a href="#" class="dropdown-item">
+                            {% else %}
+                                <a href="#" class="dropdown-item">
                                 Profile
-                            </a>
-                            <a href="#" class="dropdown-item">
-                                Settings
-                            </a>
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    Orders
+                                </a>
+                            {% endif %}
                             <div class="dropdown-divider"></div>
                             <a href="/logout" class="dropdown-item">
                                 Logout

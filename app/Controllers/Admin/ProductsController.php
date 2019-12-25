@@ -44,7 +44,7 @@ class ProductsController extends Controller
         }
 
         $this->flash->addMessage('success', 'Your product was saved successfully.');
-        return $response->withRedirect($this->router->pathFor('products.index'));
+        return $response->withRedirect($this->router->pathFor('admin.products.index'));
     }
 
     public function show(Request $request, Response $repsonse, string $slug)

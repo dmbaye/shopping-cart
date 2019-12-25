@@ -16,7 +16,7 @@ class User extends Model
 
     public function orders()
     {
-        return $this->hasMany('App\Models\Order', 'customer_id');
+        return $this->hasMany('App\Models\Order');
     }
 
     public function getUserName()

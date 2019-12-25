@@ -1,5 +1,5 @@
 // Google Font
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
 
 // Variables
 @import "variables";
@@ -15,7 +15,18 @@
 html,
 body,
 #app {
-    font-family: "Roboto", sans-serif;
+    font-family: "Ubuntu", sans-serif;
+    font-size: .96rem;
+    font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
 }
 
 .admin {
